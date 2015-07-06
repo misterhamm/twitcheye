@@ -28,8 +28,10 @@ function showResults(results) {
     var displayName = "";
     $.each(results, function(index, value) {
         displayName = '<p>' + value.name + '</p>';
-        console.log(value);
-        $('.results').html(displayName);
+        displayDeck = '<p>' + value.deck + '</p>';
+        displayThumb = '<p><img src="' + value.image.thumb_url + '"></p>';
+        console.log(value.deck);
+        $('.results').append(displayName + displayDeck + displayThumb);
     });
 }
 
