@@ -13,6 +13,7 @@ $(document).ready(function() {
         $('.results').html("");
         var searchTerms = $('.search-terms').val();
         getRequest(searchTerms);
+        $('.search-terms').val("");
     });
 
     //Click Function to fill detail element
@@ -68,7 +69,7 @@ function showResults(results) {
         displayName = '<h1 class="results-game-title"><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
         displayDeck = '<p class="results-deck">' + value.deck + '</p>';
         displayThumb = '<img class="results-img" src="http://static.giantbomb.com' + value.image.thumb_url + '">';
-        $('.results').append(displayName + displayDeck + displayThumb);
+        $('.results').append(displayThumb + displayDeck + displayName);
     });
 }
 
