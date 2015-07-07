@@ -5,35 +5,43 @@ $(document).ready(function() {
     console.log('twitch working');
 });*/
 
-
+    var gameArray;
 
     $('.search').submit(function(event) {
         event.preventDefault();
         $('.results').html("");
         var searchTerms = $('.search-terms').val();
-        console.log(searchTerms);
         getRequest(searchTerms);
     });
 
-    $.getJSON('http://www.giantbomb.com/api/game/30475/?api_key=62aa06d41a05735519c6863554fdb36fbbb347e4&format=jsonp&json_callback=?', function(data) {
-        console.log(data.name);
-    });
+    $('body').on('click', '.game-header', function(e){
+        e.preventDefault();
+        var newArray = $(this);
+        var newIndex = newArray[0].dataset.type
+
+        console.log(gameArray[newIndex]) // start changing this console.log to fill detail view
+    })
+
+    function getRequest(searchTerms) {
+        $.getJSON('https://www.giantbomb.com/api/search?api_key=62aa06d41a05735519c6863554fdb36fbbb347e4&format=jsonp&query=' + searchTerms + '&resources=game&json_callback=?', function(data) {
+            showResults(data.results);
+            gameArray = data.results;
+            console.log(gameArray);
+            return gameArray
+        });
+    }
+
+    // $.getJSON('https://www.giantbomb.com/api/game/30475/?api_key=62aa06d41a05735519c6863554fdb36fbbb347e4&format=jsonp&json_callback=?', function(data) {
+    //     console.log(data.name);
+    // });
 });
-
-
-
-function getRequest(searchTerms) {
-    $.getJSON('http://www.giantbomb.com/api/search?api_key=62aa06d41a05735519c6863554fdb36fbbb347e4&format=jsonp&query=' + searchTerms + '&resources=game&json_callback=?', function(data) {
-        showResults(data.results);
-    });
-}
 
 function showResults(results) {
     var displayName = "";
     $.each(results, function(index, value) {
-        displayName = '<h1><a href="detail.html">' + value.name + '</a></h1>';
+        displayName = '<h1><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
         displayDeck = '<p>' + value.deck + '</p>';
-        displayThumb = '<p><a href="detail.html"><img src="' + value.image.thumb_url + '"></a></p>';
+        displayThumb = '<p><img class="detail-img" src="http://static.giantbomb.com' + value.image.thumb_url + '"></p>';
         console.log(value.deck);
         $('.results').append(displayName + displayDeck + displayThumb);
     });
