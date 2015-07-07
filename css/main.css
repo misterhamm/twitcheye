@@ -73,6 +73,27 @@ a {
     letter-spacing: 0.08em;
 }
 
+.result-box {
+    width: 45%;
+    margin: 1rem auto 1rem auto;
+}
+
+.results-img {
+    float: left;
+    min-width: 8rem;
+    height: auto;
+}
+
+.results-text {
+    margin-left: 10rem;
+    min-height: 12rem;
+}
+
+.results-game-title {
+    margin: 0;
+    padding: 0;
+}
+
 
 .footer {
     text-align: center;

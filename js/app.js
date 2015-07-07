@@ -66,10 +66,10 @@ $(document).ready(function() {
 function showResults(results) {
     var displayName = "";
     $.each(results, function(index, value) {
-        displayName = '<h1 class="results-game-title"><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
-        displayDeck = '<p class="results-deck">' + value.deck + '</p>';
-        displayThumb = '<img class="results-img" src="http://static.giantbomb.com' + value.image.thumb_url + '">';
-        $('.results').append(displayThumb + displayDeck + displayName);
+        displayName = '<div class="results-text"><h1 class="results-game-title"><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
+        displayDeck = '<p class="results-deck">' + value.deck + '</p></div></div>';
+        displayThumb = '<div class="result-box"><img class="results-img" src="http://static.giantbomb.com' + value.image.thumb_url + '">';
+        $('.results').append(displayThumb + displayName + displayDeck);
     });
 }
 
