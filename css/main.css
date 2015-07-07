@@ -59,6 +59,7 @@ a {
     border-radius: 0.5em;
     padding-left: 0.5em;
     color: #42436B;
+    width: 15rem;
 }
 
 .search-submit {
@@ -81,7 +82,8 @@ a {
 .results-img {
     float: left;
     min-width: 8rem;
-    height: auto;
+    max-height: 12rem;
+    width: auto;
 }
 
 .results-text {
@@ -94,7 +96,104 @@ a {
     padding: 0;
 }
 
+.details {
+    display: none;
+}
+
+.button-container {
+    width: 100%;
+    padding-left: 6rem;
+    margin: 0;
+    height: 2rem;
+}
+
+.back {
+    display: none;
+    color: #FFF;
+    background-color: #42436B;
+    border-style: none;
+    border-radius: 0.5em;
+    padding: 0.2rem 0.5rem;
+    float: left;
+}
+
+.detail-header {
+    width: 60%;
+    margin: 0 auto;
+    min-height: 25rem;
+}
+
+.boxart {
+    min-width: 17rem;
+    height: auto;
+    float: left;
+    max-height: 30rem;
+    max-width: 25rem;
+    width: auto;
+}
+
+.detail-text {
+    margin-left: 27rem;
+    width: 60%;
+}
+
+.detail-title {
+    font-size: 4rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.detail-release {
+    margin-top: -0.5rem;
+}
+
+.detail-deck {
+    margin-top: 2rem;
+}
+
+.detail-body {
+    width: 59%;
+    margin: 0 9%;
+    float: left;
+}
+
+.detail-body h2 {
+    text-decoration: underline;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.detail-body h3 {
+    font-weight: bolder;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.detail-body a {
+    color: #FFF;
+    cursor: default;
+}
+
+detail-body p {
+    margin-top: 0;
+}
+
+
+
+
+
+
+.twitch {
+    border: solid red 1px;
+    width: 19%;
+    margin-left: 79%;
+    margin-top: 8rem;
+    height: 50rem;
+}
 
 .footer {
+    margin-top: 5rem;
     text-align: center;
+    clear: both;
 }

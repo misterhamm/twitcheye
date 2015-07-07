@@ -28,9 +28,9 @@ $(document).ready(function() {
 
         //Fill Game header
         displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
-        displayTitle = '<h1 class="detail-title">' + gameSelection.name + '</h1>';
-        displayRelease = '<p class="detail-release">' + gameSelection.original_release_date + '</p>';
-        displayDeck = '<p class="detail-deck">' + gameSelection.deck + '</p>';
+        displayTitle = '<div class="detail-text"><h1 class="detail-title">' + gameSelection.name + '</h1>';
+        displayRelease = '<p class="detail-release"> Release Date: ' + gameSelection.original_release_date + '</p>';
+        displayDeck = '<p class="detail-deck">' + gameSelection.deck + '</p></div>';
         $('.results').hide();
         $('.back').show();
         $('.details').show();
