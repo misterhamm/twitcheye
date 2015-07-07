@@ -1,0 +1,21 @@
+body {
+    font-family: 'Raleway', Arial, sans-serif;
+}
+
+.header {
+    text-align: center;
+}
+
+.main-title {
+    margin: 0;
+    margin-top: 3rem;
+    font-family: 'Press Start 2p', Arial, sans-serif;
+    font-size: 3rem;
+    font-weight: 100;
+}
+
+.tagline {
+    margin: 1rem 0 3rem 0;
+    font-weight: 100;
+}
+

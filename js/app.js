@@ -22,13 +22,38 @@ $(document).ready(function() {
         var newIndex = newArray[0].dataset.type
 
         console.log(gameArray[newIndex]) // start changing this console.log to fill detail view
-    })
+
+        gameSelection = gameArray[newIndex];
+
+        //Fill Game header
+        displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
+        displayTitle = '<h1 class="detail-title">' + gameSelection.name + '</h1>';
+        displayRelease = '<p class="detail-release">' + gameSelection.original_release_date + '</p>';
+        displayDeck = '<p class="detail-deck">' + gameSelection.deck + '</p>';
+        $('.results').hide();
+        $('.back').show();
+        $('.details').show();
+        $('.detail-header').html(displayBoxArt + displayTitle + displayRelease + displayDeck);
+
+        //Fill full game review
+        displayOverview = gameSelection.description;
+        $('.detail-body').html(displayOverview);
+    });
+
+    //Back to search results from detail view
+    $('body').on('click', '.back', function() {
+        $('.detail-header').html("");
+        $('.detail-body').html("");
+        $('.details').hide();
+        $('.results').show();
+    });
+
+
     //API Get Request
     function getRequest(searchTerms) {
         $.getJSON('https://www.giantbomb.com/api/search?api_key=62aa06d41a05735519c6863554fdb36fbbb347e4&format=jsonp&query=' + searchTerms + '&resources=game&json_callback=?', function(data) {
             showResults(data.results);
             gameArray = data.results;
-            console.log(gameArray);
             return gameArray
         });
     }
@@ -40,10 +65,9 @@ $(document).ready(function() {
 function showResults(results) {
     var displayName = "";
     $.each(results, function(index, value) {
-        displayName = '<h1><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
-        displayDeck = '<p>' + value.deck + '</p>';
-        displayThumb = '<p><img class="detail-img" src="http://static.giantbomb.com' + value.image.thumb_url + '"></p>';
-        console.log(value.deck);
+        displayName = '<h1 class="results-game-title"><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
+        displayDeck = '<p class="results-deck">' + value.deck + '</p>';
+        displayThumb = '<img class="results-img" src="http://static.giantbomb.com' + value.image.thumb_url + '">';
         $('.results').append(displayName + displayDeck + displayThumb);
     });
 }
