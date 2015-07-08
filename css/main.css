@@ -190,10 +190,11 @@ detail-body p {
     margin-left: 79%;
     margin-top: 8rem;
     height: 50rem;
+    text-align: center;
 }
 
 .footer {
-    margin-top: 5rem;
+    margin-top: 20rem;
     text-align: center;
     clear: both;
 }

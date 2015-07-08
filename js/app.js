@@ -1,9 +1,9 @@
 $(document).ready(function() {
 
-/*$.getJSON('https://api.twitch.tv/kraken/channels/sevadus&callback=?', function(data) {
-    console.log(data.search);
+$.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggestion&live=true&callback=?', function(data) {
+    console.log(data);
     console.log('twitch working');
-});*/
+});
 
     var gameArray;
 
@@ -22,7 +22,6 @@ $(document).ready(function() {
         var newArray = $(this);
         var newIndex = newArray[0].dataset.type
 
-        console.log(gameArray[newIndex]) // start changing this console.log to fill detail view
 
         gameSelection = gameArray[newIndex];
 
@@ -39,8 +38,26 @@ $(document).ready(function() {
         //Fill full game review
         displayOverview = gameSelection.description;
         $('.detail-body').html(displayOverview);
+        
+        
+        //Fill Twitch sidebar
+        $.getJSON('https://api.twitch.tv/kraken/search/streams?q=' + gameSelection.name + '&type=suggestion&live=true&callback=?', function(data) {
+            streamSet = data.streams[0-4];
+            $('.twitch').append(
+                '<a href="' +
+                streamSet.channel.url + 
+                '><img src="' +
+                streamSet.preview.medium + 
+                '" class="stream-img"><p class="stream-status">' +
+                streamSet.channel.status + 
+                '</p><p class="stream-name">' +
+                streamSet.channel.name + '</a></p>');
+        });
+        
+        $('.all-streams').html('<a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '">Click here to see all <strong>' + gameSelection.name + ' Live Streams</strong>.</a>');
     });
 
+    
     //Back to search results from detail view
     $('body').on('click', '.back', function() {
         $('.detail-header').html("");
