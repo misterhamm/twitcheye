@@ -16,15 +16,19 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         $('.search-terms').val("");
     });
 
+    
+    
+    
     //Click Function to fill detail element
     $('body').on('click', '.game-header', function(e){
         e.preventDefault();
+        
+        //Variables to pull index to define which search result was clicked
         var newArray = $(this);
-        var newIndex = newArray[0].dataset.type
-
-
+        var newIndex = newArray[0].dataset.type;
         gameSelection = gameArray[newIndex];
-
+     
+        
         //Fill Game header
         displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
         displayTitle = '<div class="detail-text"><h1 class="detail-title">' + gameSelection.name + '</h1>';
@@ -34,28 +38,41 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         $('.back').show();
         $('.details').show();
         $('.detail-header').html(displayBoxArt + displayTitle + displayRelease + displayDeck);
-
+     
+        
         //Fill full game review
         displayOverview = gameSelection.description;
         $('.detail-body').html(displayOverview);
-        
+ 
         
         //Fill Twitch sidebar
-        $.getJSON('https://api.twitch.tv/kraken/search/streams?q=' + gameSelection.name + '&type=suggestion&live=true&callback=?', function(data) {
-            streamSet = data.streams[0-4];
-            $('.twitch').append(
+        $.getJSON('https://api.twitch.tv/kraken/search/streams?q=' + gameSelection.name + '&type=suggestion&live=true&limit=5&callback=?', function(data) {
+            console.log(data.streams);
+            $.each(data.streams, function(index, value) {
+                streamThumb = '<a href="' + value.channel.url + '"><img src="' + value.preview.medium + '" class="stream-img">'
+                streamStatus = '<p class="stream-status">' + value.channel.status + '</p>'
+                streamName = '<p class="stream-name"><strong>' + value.channel.name + '</strong></p>'
+                $('.twitch').append(streamThumb + streamStatus + streamName);
+        console.log(gameSelection);
+            /*streamSet = data.streams.slice[0]; //check out slice() to grab indexes 0-4
+            $('.twitch').append( 
                 '<a href="' +
                 streamSet.channel.url + 
-                '><img src="' +
+                '"><img src="' +
                 streamSet.preview.medium + 
                 '" class="stream-img"><p class="stream-status">' +
                 streamSet.channel.status + 
                 '</p><p class="stream-name">' +
                 streamSet.channel.name + '</a></p>');
+            console.log(streamSet);*/
+            });
         });
         
-        $('.all-streams').html('<a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '">Click here to see all <strong>' + gameSelection.name + ' Live Streams</strong>.</a>');
+        $('.all-streams').html('<a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '" class="twitch-header">Click here to see all <br><strong>' + gameSelection.name + ' Live Streams</strong>.</a>');
     });
+        
+        
+    
 
     
     //Back to search results from detail view
@@ -78,6 +95,7 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
 
 
 });
+
 
 //Search Results Printed to HTML
 function showResults(results) {

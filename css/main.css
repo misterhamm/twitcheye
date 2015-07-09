@@ -127,7 +127,7 @@ a {
     min-width: 17rem;
     height: auto;
     float: left;
-    max-height: 30rem;
+    max-height: 25rem;
     max-width: 25rem;
     width: auto;
 }
@@ -185,12 +185,31 @@ detail-body p {
 
 
 .twitch {
-    border: solid red 1px;
     width: 19%;
-    margin-left: 79%;
+    margin-left: 76%;
     margin-top: 8rem;
-    height: 50rem;
+    padding: 1rem;
     text-align: center;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.twitch-header {
+    margin-top: -15rem;
+    margin-bottom: 5rem;
+}
+    
+.stream-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.stream-status {
+   margin: 0; 
+}
+
+.stream-name {
+    margin: 0;
+    margin-bottom: 1.5rem;
 }
 
 .footer {
