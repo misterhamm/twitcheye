@@ -121,9 +121,11 @@ a {
 }
 
 .detail-header {
-    width: 60%;
+    width: 100%;
     margin: 0 auto;
+    padding-top: 4rem;
     min-height: 25rem;
+    background-color: rgba(255,255,255,0.2);
 }
 
 .boxart {
@@ -133,11 +135,12 @@ a {
     max-height: 25rem;
     max-width: 25rem;
     width: auto;
+    margin-left: 20%;
 }
 
 .detail-text {
-    margin-left: 27rem;
-    width: 59%;
+    margin-left: 40%;
+    width: 40%;
 }
 
 .detail-title {
@@ -183,20 +186,27 @@ detail-body p {
 }
 
 .detail-body th {
-    background-color: gray;
-    border: 1px red solid;
+    background-color: #429377;
+    border: 1px #257A5C solid;
+    padding: 0.5rem;
 }
 
 .detail-body tr:nth-child(even) {
-    background-color: gray;
-    border: 1px red solid;
+    background-color: #429377;
+    border: 1px #257A5C solid;
 }
 
 .detail-body tr:nth-child(odd) {
-    background-color: slateblue;
-    border: 1px red solid;
+    background-color: #9ACFBC;
 }
 
+.detail-body td {
+    border: 1px solid #257A5C;
+}
+
+.detail-body td {
+    padding: 0 0.5rem;
+}
 
 
 
@@ -211,9 +221,10 @@ detail-body p {
     background-color: rgba(255,255,255,0.2);
 }
 
-.twitch-header {
-    margin-top: -15rem;
-    margin-bottom: 5rem;
+.all-streams {
+    margin: 0;
+    margin-bottom: 3rem;
+    font-weight: 100;
 }
     
 .stream-img {

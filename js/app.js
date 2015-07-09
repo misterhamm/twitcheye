@@ -80,7 +80,7 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
             });
         });
         
-        $('.all-streams').html('<a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '" class="twitch-header">Click here to see all <br><strong>' + gameSelection.name + ' Live Streams</strong>.</a>');
+        $('.all-streams').html('<h2 class="all-streams"><a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '" class="twitch-header">Click here to see all <br><strong>' + gameSelection.name + ' Live Streams</strong></a></h2>');
     }); // END Click Detail Element
         
         
