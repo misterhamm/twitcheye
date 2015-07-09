@@ -7,6 +7,8 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
 
     var gameArray;
 
+    
+    
     //Search Function
     $('.search').submit(function(event) {
         event.preventDefault();
@@ -14,6 +16,9 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         var searchTerms = $('.search-terms').val();
         getRequest(searchTerms);
         $('.search-terms').val("");
+        $('.details').hide();
+        $('.results').show();
+        $('.twitch').html('<p class="all-streams"></p>');
     });
 
     
@@ -30,7 +35,27 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
      
         
         //Fill Game header
-        displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
+        if(gameSelection.image){ //Nested ifs to fall back to smaller and smaller photos
+            if(gameSelection.image.super_url){
+                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
+            }
+            else if(gameSelection.image.medium_url) {
+                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.medium_url + '"class="boxart">';
+            }
+            else if(gameSelection.image.small_url) {
+                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.small_url + '"class="boxart">';
+            }
+            else if(gameSelection.image.tiny_url) {
+                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.tiny_url + '"class="boxart">';
+            }
+        }
+        else {
+            displayBoxArt = '<img src="../no-img-placeholder.jpg" class="boxart">';
+        }
+        
+        //releaseDate = moment(gameSelection.original_release_date).format(MMMM Do YYYY);
+        //console.log(releaseDate);
+        //console.log(moment(gameSelection.original_release_date).format(MMMM Do YYYY));
         displayTitle = '<div class="detail-text"><h1 class="detail-title">' + gameSelection.name + '</h1>';
         displayRelease = '<p class="detail-release"> Release Date: ' + gameSelection.original_release_date + '</p>';
         displayDeck = '<p class="detail-deck">' + gameSelection.deck + '</p></div>';
@@ -47,29 +72,16 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         
         //Fill Twitch sidebar
         $.getJSON('https://api.twitch.tv/kraken/search/streams?q=' + gameSelection.name + '&type=suggestion&live=true&limit=5&callback=?', function(data) {
-            console.log(data.streams);
             $.each(data.streams, function(index, value) {
                 streamThumb = '<a href="' + value.channel.url + '"><img src="' + value.preview.medium + '" class="stream-img">'
                 streamStatus = '<p class="stream-status">' + value.channel.status + '</p>'
                 streamName = '<p class="stream-name"><strong>' + value.channel.name + '</strong></p>'
                 $('.twitch').append(streamThumb + streamStatus + streamName);
-        console.log(gameSelection);
-            /*streamSet = data.streams.slice[0]; //check out slice() to grab indexes 0-4
-            $('.twitch').append( 
-                '<a href="' +
-                streamSet.channel.url + 
-                '"><img src="' +
-                streamSet.preview.medium + 
-                '" class="stream-img"><p class="stream-status">' +
-                streamSet.channel.status + 
-                '</p><p class="stream-name">' +
-                streamSet.channel.name + '</a></p>');
-            console.log(streamSet);*/
             });
         });
         
         $('.all-streams').html('<a href="http://www.twitch.tv/directory/game/' + gameSelection.name + '" class="twitch-header">Click here to see all <br><strong>' + gameSelection.name + ' Live Streams</strong>.</a>');
-    });
+    }); // END Click Detail Element
         
         
     
@@ -81,6 +93,7 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         $('.detail-body').html("");
         $('.details').hide();
         $('.results').show();
+        $('.twitch').html('<p class="all-streams"></p>')
     });
 
 
@@ -101,13 +114,30 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
 function showResults(results) {
     var displayName = "";
     $.each(results, function(index, value) {
+        console.log(value)
         displayName = '<div class="results-text"><h1 class="results-game-title"><a href="#" class="game-header" data-type=' + index + '>' + value.name + '</a></h1>';
         displayDeck = '<p class="results-deck">' + value.deck + '</p></div></div>';
-        displayThumb = '<div class="result-box"><img class="results-img" src="http://static.giantbomb.com' + value.image.thumb_url + '">';
+        if(value.image){
+            if(value.image){ //Nested ifs to fall back to smaller and smaller photos
+                if(value.image.super_url){
+                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.super_url + '"class="results-img">';
+                }
+                else if(value.image.medium_url) {
+                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.medium_url + '"class="results-img">';
+                }
+                else if(value.image.small_url) {
+                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.small_url + '"class="results-img">';
+                }
+                else if(value.image.tiny_url) {
+                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.tiny_url + '"class="results-img">';
+                }
+            }  
+        }
+        else {
+                displayThumb = '<div class="result-box"><img src="../no-img-placeholder.png" class="results-img">';
+            }
         $('.results').append(displayThumb + displayName + displayDeck);
+
+        
     });
 }
-
-
-
-

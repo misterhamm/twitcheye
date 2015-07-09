@@ -75,19 +75,22 @@ a {
 }
 
 .result-box {
-    width: 45%;
+    width: 55%;
     margin: 1rem auto 1rem auto;
 }
 
 .results-img {
     float: left;
     min-width: 8rem;
+    max-width: 10rem;
     max-height: 12rem;
     width: auto;
 }
 
 .results-text {
-    margin-left: 10rem;
+    margin: 0;
+    padding: 0;
+    margin-left: 12rem;
     min-height: 12rem;
 }
 
@@ -134,7 +137,7 @@ a {
 
 .detail-text {
     margin-left: 27rem;
-    width: 60%;
+    width: 59%;
 }
 
 .detail-title {
@@ -177,6 +180,21 @@ a {
 
 detail-body p {
     margin-top: 0;
+}
+
+.detail-body th {
+    background-color: gray;
+    border: 1px red solid;
+}
+
+.detail-body tr:nth-child(even) {
+    background-color: gray;
+    border: 1px red solid;
+}
+
+.detail-body tr:nth-child(odd) {
+    background-color: slateblue;
+    border: 1px red solid;
 }
 
 
