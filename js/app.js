@@ -37,16 +37,16 @@ $.getJSON('https://api.twitch.tv/kraken/search/streams?q=minecraft&type=suggesti
         //Fill Game header
         if(gameSelection.image){ //Nested ifs to fall back to smaller and smaller photos
             if(gameSelection.image.super_url){
-                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.super_url + '"class="boxart">';
+                displayBoxArt = '<img src="' + gameSelection.image.super_url + '"class="boxart">';
             }
             else if(gameSelection.image.medium_url) {
-                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.medium_url + '"class="boxart">';
+                displayBoxArt = '<img src="' + gameSelection.image.medium_url + '"class="boxart">';
             }
             else if(gameSelection.image.small_url) {
-                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.small_url + '"class="boxart">';
+                displayBoxArt = '<img src="' + gameSelection.image.small_url + '"class="boxart">';
             }
             else if(gameSelection.image.tiny_url) {
-                displayBoxArt = '<img src="http://static.giantbomb.com' + gameSelection.image.tiny_url + '"class="boxart">';
+                displayBoxArt = '<img src="' + gameSelection.image.tiny_url + '"class="boxart">';
             }
         }
         else {
@@ -120,16 +120,16 @@ function showResults(results) {
         if(value.image){
             if(value.image){ //Nested ifs to fall back to smaller and smaller photos
                 if(value.image.super_url){
-                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.super_url + '"class="results-img">';
+                    displayThumb = '<div class="result-box"><img src="' + value.image.super_url + '"class="results-img">';
                 }
                 else if(value.image.medium_url) {
-                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.medium_url + '"class="results-img">';
+                    displayThumb = '<div class="result-box"><img src="' + value.image.medium_url + '"class="results-img">';
                 }
                 else if(value.image.small_url) {
-                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.small_url + '"class="results-img">';
+                    displayThumb = '<div class="result-box"><img src="' + value.image.small_url + '"class="results-img">';
                 }
                 else if(value.image.tiny_url) {
-                    displayThumb = '<div class="result-box"><img src="http://static.giantbomb.com' + value.image.tiny_url + '"class="results-img">';
+                    displayThumb = '<div class="result-box"><img src="' + value.image.tiny_url + '"class="results-img">';
                 }
             }  
         }
